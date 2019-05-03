@@ -1,0 +1,41 @@
+{
+  "name": "fah-pyon",
+  "version": "1.0.0",
+  "description": "Parse data in the PyON serialization format",
+  "main": "src/load.js",
+  "scripts": {
+    "test": "riteway src/**/*.spec.js | tap-nyc",
+    "instrument": "nyc npm test",
+    "lint": "eslint src",
+    "build": "antlr -o src -Dlanguage=JavaScript -no-listener -visitor grammar/*.g4"
+  },
+  "keywords": [
+    "PyON"
+  ],
+  "author": "Tamara Cook",
+  "license": "MIT",
+  "dependencies": {
+    "antlr4": "^4.7.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "nyc": "^14.0.0",
+    "react": "^16.8.6",
+    "riteway": "^6.0.3",
+    "tap-nyc": "^1.0.3"
+  },
+  "nyc": {
+    "exclude": "src/grammar/PyONVisitor.js",
+    "reporter": [
+      "html"
+    ],
+    "check-coverage": true,
+    "lines": 80
+  },
+  "private": true
+}
