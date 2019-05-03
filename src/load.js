@@ -23,4 +23,4 @@ function load (input) {
   return loader.visitPyon(tree)
 }
 
-module.exports = load
+module.exports = { load }

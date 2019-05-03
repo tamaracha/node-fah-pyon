@@ -1,7 +1,7 @@
 'use strict'
 const { describe, Try } = require('riteway')
 const PyonError = require('./pyon-error')
-const load = require('./load')
+const { load } = require('./load')
 
 describe('load()', async assert => {
   let should = 'throw a PyonError'
