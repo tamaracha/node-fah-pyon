@@ -28,3 +28,18 @@ PyON 1 example
 const data = load(input)
 console.log(data)
 ```
+
+## Development
+To run the build npm script and regenerate the parser, you should install Java and [Antlr4](https://www.antlr.org) on your local development machine.
+
+```bash
+# Clone and enter directory
+git clone https://github.com/tamaracha/node-fah-pyon
+cd node-fah-pyon
+# Check style with eslint
+npm run lint
+# Run unit tests
+npm test
+# Regenerate parser from grammar
+npm run build
+```

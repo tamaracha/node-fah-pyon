@@ -4,6 +4,9 @@
   "description": "Parse data in the PyON serialization format",
   "main": "src/load.js",
   "scripts": {
+    "preversion": "npm run lint && npm run test",
+    "version": "npm run build && git add src/grammar",
+    "postversion": "git push && git push --tags",
     "test": "riteway src/**/*.spec.js | tap-nyc",
     "instrument": "nyc npm test",
     "lint": "eslint src",
