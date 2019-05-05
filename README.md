@@ -36,10 +36,12 @@ To run the build npm script and regenerate the parser, you should install Java a
 # Clone and enter directory
 git clone https://github.com/tamaracha/node-fah-pyon
 cd node-fah-pyon
+# install (dev) dependencies
+npm i
 # Check style with eslint
 npm run lint
 # Run unit tests
 npm test
-# Regenerate parser from grammar
+# Regenerate parser from antlr grammar
 npm run build
 ```
