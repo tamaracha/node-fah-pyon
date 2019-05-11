@@ -4,7 +4,7 @@
   "description": "Parse data in the PyON serialization format",
   "main": "src/load.js",
   "scripts": {
-    "preversion": "npm run lint && npm run test",
+    "preversion": "npm run lint && npm test",
     "version": "npm run build && git add src/grammar",
     "postversion": "git push && git push --tags",
     "test": "riteway src/**/*.spec.js | tap-nyc",
@@ -29,10 +29,19 @@
     "eslint-plugin-node": "^9.0.1",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
-    "nyc": "^14.0.0",
+    "husky": "^2.2.0",
+    "lint-staged": "^8.1.6",
+    "nyc": "^14.1.1",
+    "prettier-standard": "^9.1.1",
     "react": "^16.8.6",
     "riteway": "^6.0.3",
     "tap-nyc": "^1.0.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test"
+    }
   },
   "nyc": {
     "exclude": "src/grammar/PyONVisitor.js",
