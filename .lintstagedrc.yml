@@ -1,5 +1,4 @@
-linters:
-  'src/!(grammar/**)*.js':
-    - prettier-standard
-    - eslint --fix --format stylish
-    - git add
+'src/!(grammar/**)*.js':
+  - prettier-standard
+  - eslint --fix --format stylish
+  - git add
