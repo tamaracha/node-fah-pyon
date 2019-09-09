@@ -151,6 +151,12 @@ describe('load()', async assert => {
     expected: { x: 1, y: true }
   })
   assert({
+    given: 'PyON with an object with null property',
+    should,
+    actual: load('PyON 1 string\n{"x":"None"}\n---').body,
+    expected: { x: null }
+  })
+  assert({
     given: 'PyON with an object with spaces',
     should,
     actual: load('PyON 1 string\n{ "x": 1, "y": True }\n---').body,
