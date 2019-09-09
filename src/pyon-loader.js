@@ -51,6 +51,8 @@ class PyONLoader extends PyONVisitor {
         return true
       case 'false':
         return false
+      case 'None':
+        return null
       default:
         return sliced
     }
