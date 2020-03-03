@@ -23,14 +23,14 @@
     "antlr4": "^4.8.0"
   },
   "devDependencies": {
-    "eslint": "^6.3.0",
+    "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "husky": "^3.0.5",
-    "lint-staged": "^9.2.5",
+    "lint-staged": "^10.0.8",
     "nyc": "^14.1.1",
     "prettier-standard": "^14.0.5",
     "react": "^16.9.0",
