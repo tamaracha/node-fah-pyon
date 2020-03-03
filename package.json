@@ -20,7 +20,7 @@
   "license": "MIT",
   "repository": "github:tamaracha/node-fah-pyon.git",
   "dependencies": {
-    "antlr4": "^4.7.2"
+    "antlr4": "^4.8.0"
   },
   "devDependencies": {
     "eslint": "^6.3.0",
