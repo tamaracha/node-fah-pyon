@@ -1,7 +1,7 @@
 'use strict'
 const { describe, Try } = require('riteway')
 const PyonError = require('./pyon-error')
-const { load } = require('./load')
+const { load, safeLoad } = require('./load')
 
 describe('load()', async assert => {
   let should = 'throw a PyonError'
@@ -22,6 +22,12 @@ describe('load()', async assert => {
     should,
     actual: Try(load, 42),
     expected: PyonError.noString(42)
+  })
+  assert({
+    given: 'an integer',
+    should,
+    actual: safeLoad('42', true),
+    expected: { name: 'none', body: '42' }
   })
   assert({
     given: 'a number',
@@ -52,6 +58,12 @@ describe('load()', async assert => {
     given: 'PyON without surrounding whitespace',
     should,
     actual: load('PyON 1 Test\n42\n---'),
+    expected: { name: 'Test', body: 42 }
+  })
+  assert({
+    given: 'PyON without surrounding whitespace',
+    should,
+    actual: safeLoad('PyON 1 Test\n42\n---'),
     expected: { name: 'Test', body: 42 }
   })
   assert({

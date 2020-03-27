@@ -9,8 +9,12 @@ const loader = new PyONLoader()
 const errorListener = new ThrowingErrorListener()
 
 function load (input) {
-  if (!input) { throw PyonError.emptyValue() }
-  if (typeof input !== 'string') { throw PyonError.noString(input) }
+  if (!input) {
+    throw PyonError.emptyValue()
+  }
+  if (typeof input !== 'string') {
+    throw PyonError.noString(input)
+  }
   const chars = new InputStream(input)
   const lexer = new PyONLexer(chars)
   lexer.removeErrorListeners()
@@ -23,4 +27,12 @@ function load (input) {
   return loader.visitPyon(tree)
 }
 
-module.exports = { load }
+function safeLoad (input) {
+  try {
+    return load(input)
+  } catch (e) {
+    return { name: 'none', body: input }
+  }
+}
+
+module.exports = { load, safeLoad }
