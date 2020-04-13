@@ -8,7 +8,7 @@
     "preversion": "npm run lint && npm test",
     "version": "npm run build && git add src/grammar",
     "postversion": "git push && git push --tags",
-    "test": "riteway src/**/*.spec.js | tap-nyc",
+    "test": "ava --tap | tap-nyc",
     "instrument": "nyc npm test",
     "lint": "eslint src",
     "build": "antlr -o src -Dlanguage=JavaScript -no-listener -visitor grammar/*.g4"
@@ -24,6 +24,7 @@
     "antlr4": "^4.8.0"
   },
   "devDependencies": {
+    "ava": "^3.7.0",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.20.1",
@@ -34,8 +35,6 @@
     "lint-staged": "^10.0.9",
     "nyc": "^15.0.0",
     "prettier-standard": "^16.2.1",
-    "react": "^16.13.1",
-    "riteway": "^6.1.1",
     "tap-nyc": "^1.0.3"
   },
   "husky": {
