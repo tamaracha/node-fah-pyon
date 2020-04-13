@@ -10,7 +10,7 @@
     "postversion": "git push && git push --tags",
     "test": "ava --tap | tap-nyc",
     "instrument": "nyc npm test",
-    "lint": "eslint src",
+    "lint": "standard --fix 'src/**/*.js' | snazzy",
     "build": "antlr -o src -Dlanguage=JavaScript -no-listener -visitor grammar/*.g4"
   },
   "keywords": [
@@ -25,16 +25,12 @@
   },
   "devDependencies": {
     "ava": "^3.7.0",
-    "eslint": "^6.8.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
+    "babel-eslint": "^10.1.0",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.9",
     "nyc": "^15.0.0",
-    "prettier-standard": "^16.2.1",
+    "snazzy": "^8.0.0",
+    "standard": "^14.3.3",
     "tap-nyc": "^1.0.3"
   },
   "husky": {
@@ -50,5 +46,11 @@
     ],
     "check-coverage": true,
     "lines": 80
+  },
+  "standard": {
+    "ignore": [
+      "src/grammar"
+    ],
+    "parser": "babel-eslint"
   }
 }
