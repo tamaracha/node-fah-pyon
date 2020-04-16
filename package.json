@@ -2,16 +2,21 @@
   "name": "fah-pyon",
   "version": "1.2.0",
   "description": "Parse data in the PyON serialization format",
-  "main": "src/load.js",
-  "types": "src/index.d.ts",
+  "main": "./lib/load.js",
+  "type": "commonjs",
+  "types": "./lib/load.d.ts",
   "scripts": {
     "preversion": "npm run lint && npm test",
-    "version": "npm run build && git add src/grammar",
+    "version": "mate -w CHANGELOG.md && git add CHANGELOG.md",
     "postversion": "git push && git push --tags",
+    "lint": "standard --fix '{config,lib}/**/*.?(c|m)js' | snazzy",
     "test": "ava --tap | tap-nyc",
     "instrument": "nyc npm test",
-    "lint": "standard --fix 'src/**/*.js' | snazzy",
-    "build": "antlr -o src -Dlanguage=JavaScript -no-listener -visitor grammar/*.g4"
+    "docs": "jsdoc -c ./config/jsdoc.config.json",
+    "antlr": "antlr -Dlanguage=JavaScript -no-listener -visitor -o lib grammar/*.g4",
+    "prebuild": "del lib/grammar",
+    "build": "npm run antlr",
+    "prepack": "npm run build"
   },
   "keywords": [
     "PyON",
@@ -20,15 +25,20 @@
   "author": "Tamara Cook",
   "license": "MIT",
   "repository": "github:tamaracha/node-fah-pyon.git",
+  "files": [
+    "lib/**/!(*.spec).{js,d.ts}"
+  ],
   "dependencies": {
     "antlr4": "^4.8.0"
   },
   "devDependencies": {
     "ava": "^3.7.0",
     "babel-eslint": "^10.1.0",
+    "del-cli": "^3.0.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.1.3",
     "nyc": "^15.0.1",
+    "prettier": "^2.0.4",
     "snazzy": "^8.0.0",
     "standard": "^14.3.3",
     "tap-nyc": "^1.0.3"
@@ -48,9 +58,6 @@
     "lines": 80
   },
   "standard": {
-    "ignore": [
-      "src/grammar"
-    ],
     "parser": "babel-eslint"
   }
 }
