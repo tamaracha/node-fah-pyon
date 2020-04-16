@@ -9,7 +9,7 @@
     "preversion": "npm run lint && npm test",
     "version": "mate -w CHANGELOG.md && git add CHANGELOG.md",
     "postversion": "git push && git push --tags",
-    "lint": "standard --fix '{config,lib}/**/*.?(c|m)js' | snazzy",
+    "lint": "standard --fix 'lib/**/*.js' | snazzy",
     "test": "ava --tap | tap-nyc",
     "instrument": "nyc npm test",
     "docs": "jsdoc -c ./config/jsdoc.config.json",
@@ -45,7 +45,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
+      "pre-commit": "lint-staged -c ./config/lint-staged.config.js",
       "pre-push": "npm test"
     }
   },
