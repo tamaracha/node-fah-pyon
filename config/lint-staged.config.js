@@ -1,5 +1,5 @@
 'use strict'
 module.exports = {
   '*.{json,yml,yaml}': 'prettier --write',
-  '(lib|config)/**/*.js': files => `standard --fix ${files.join(' ')} | snazzy`
+  '(lib|config)/**/*.?(m|c)js': files => `standard --fix ${files.join(' ')} | snazzy`
 }

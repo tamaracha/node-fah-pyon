@@ -4,18 +4,22 @@
   "description": "Parse data in the PyON serialization format",
   "main": "./lib/load.js",
   "type": "commonjs",
+  "exports": {
+    "import": "./lib/load.mjs",
+    "require": "./lib/load.js"
+  },
   "types": "./lib/load.d.ts",
   "scripts": {
     "preversion": "npm run lint && npm test",
     "version": "mate -w CHANGELOG.md && git add CHANGELOG.md",
     "postversion": "git push && git push --tags",
-    "lint": "standard --fix 'lib/**/*.js' | snazzy",
+    "lint": "standard --fix '{lib,config}/**/*.?(m)js' | snazzy",
     "test": "ava --tap | tap-nyc",
     "instrument": "nyc npm test",
     "docs": "jsdoc -c ./config/jsdoc.config.json",
-    "antlr": "antlr -Dlanguage=JavaScript -no-listener -visitor -o lib grammar/*.g4",
+    "grammar": "mkdir lib/grammar && nearleyc -o lib/grammar/pyon.js grammar/pyon.ne",
     "prebuild": "del lib/grammar",
-    "build": "npm run antlr",
+    "build": "npm run grammar",
     "prepack": "npm run build"
   },
   "keywords": [
@@ -26,10 +30,11 @@
   "license": "MIT",
   "repository": "github:tamaracha/node-fah-pyon.git",
   "files": [
-    "lib/**/!(*.spec).{js,d.ts}"
+    "lib/**/!(*.spec).{js,mjs,d.ts}"
   ],
   "dependencies": {
-    "antlr4": "^4.8.0"
+    "moo": "^0.5.1",
+    "nearley": "^2.19.2"
   },
   "devDependencies": {
     "ava": "^3.7.0",
