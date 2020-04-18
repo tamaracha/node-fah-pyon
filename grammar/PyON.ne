@@ -1,14 +1,17 @@
 @{%
 const moo = require('moo')
 const lexer = moo.compile({
-  number: { match: /[\-]?[0-9]+[\\.][0-9]+/, value: s => Number(s) },
-  integer: { match: /0|[\-]?[1-9][0-9]*/, value: s => parseInt(s) },
-  string: { match: /"(?:\\["\\]|[^\n"\\])*"/, value: s => s.slice(1, -1) },
+    number: /-?(?:[0-9]|[1-9][0-9]+)(?:\.[0-9]+)?(?:[eE][-+]?[0-9]+)?\b/,
+    truestring: '"True"',
+    falseString: '"False"',
+    noneString: '"None"',
+    string: { match: /"(?:\\["bfnrt\/\\]|\\u[a-fA-F0-9]{4}|[^"\\])*"/, value: s => s.slice(1, -1) },
   start: /^PyON/,
   name: {
     match: /[a-zA-Z]+/,
     type: moo.keywords({
-      bool: ['True', 'False'],
+      'true': 'True',
+      'false': 'False',
       none: 'None'
     })
   },
@@ -25,7 +28,7 @@ const lexer = moo.compile({
 %}
 @lexer lexer
 pyon -> header value %end {% ([type, payload]) => ({ type, payload }) %}
-header -> %start %space %integer %space %name %NL {% data => data[4].value %}
+header -> %start %space %number %space %name %NL {% data => data[4].value %}
 value ->
   object {% id %}
   | array {% id %}
@@ -44,13 +47,8 @@ array -> %lbrack (value (%comma value {% data => data[1] %}):*):? %rbrack {%
   }
 %}
 primitive ->
-  %integer {% ([item]) => item.value %}
-  | %number {% ([item]) => item.value %}
-  | %string {% ([item]) => item.value === 'None' ? null : item.value %}
-  | %bool {%
-    ([item]) => {switch (item.value) {
-      case 'True': return true
-      case 'False': return false
-    }}
-  %}
-  | %none {% () => null %}
+  %number {% ([item]) => Number(item.value) %}
+  | %string {% ([item]) => item.value %}
+  | (%true | %trueString) {% () => true %}
+  | (%false | %falseString) {% () => false %}
+  | (%none | %noneString) {% () => null %}
