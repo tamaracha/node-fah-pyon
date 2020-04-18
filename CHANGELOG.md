@@ -5,6 +5,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- wrapper module for ESM exports
+
+### Changed
+- migrated from antlr to nearley with moo lexer
+- strings are not trimmed by load function anymore
+
 ## [1.3.0] - 2020-04-16
 ### Added
 - Publish package archives in github releases, containing only necessary files
