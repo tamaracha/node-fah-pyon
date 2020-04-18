@@ -1,34 +1,37 @@
 @{%
 const moo = require('moo')
-const lexer = moo.compile({
+const lexer = moo.states({
+  main: {
+  space: ' ',
+    number: /[1-9][0-9]*/,
+    name: { match: /[a-zA-Z]+/, type: moo.keywords({
+      pyon: 'PyON'
+    })},
+  NL: { match: /\n/, lineBreaks: true, push: 'pyon' }
+  },
+  pyon: {
     number: /-?(?:[0-9]|[1-9][0-9]+)(?:\.[0-9]+)?(?:[eE][-+]?[0-9]+)?\b/,
     truestring: '"True"',
     falseString: '"False"',
     noneString: '"None"',
     string: { match: /"(?:\\["bfnrt\/\\]|\\u[a-fA-F0-9]{4}|[^"\\])*"/, value: s => s.slice(1, -1) },
-  start: /^PyON/,
-  name: {
-    match: /[a-zA-Z]+/,
-    type: moo.keywords({
-      'true': 'True',
-      'false': 'False',
-      none: 'None'
-    })
-  },
-  end: /\n---$/,
+    'true': 'True',
+    'false': 'False',
+    none: 'None',
+  end: { match: '\n---', pop: 1 },
   lbrack: /[\[]\s*/,
   rbrack: /\s*[\]]/,
   lbrace: /[{]\s*/,
   rbrace: /\s*[}]/,
   colon: /[:]\s*/,
   comma: /[,]\s*/,
-  space: /[ \t]+/,
-  NL: { match: /\n/, lineBreaks: true }
+  space: { match: /[\s]+/, lineBreaks: true }
+  }
 })
 %}
 @lexer lexer
 pyon -> header value %end {% ([type, payload]) => ({ type, payload }) %}
-header -> %start %space %number %space %name %NL {% data => data[4].value %}
+header -> %pyon %space %number %space %name %NL {% data => data[4].value %}
 value ->
   object {% id %}
   | array {% id %}
