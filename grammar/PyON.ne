@@ -19,32 +19,34 @@ const lexer = moo.states({
     'false': 'False',
     none: 'None',
   end: { match: '\n---', pop: 1 },
-  lbrack: /[\[]\s*/,
-  rbrack: /\s*[\]]/,
-  lbrace: /[{]\s*/,
-  rbrace: /\s*[}]/,
-  colon: /[:]\s*/,
-  comma: /[,]\s*/,
-  space: { match: /[\s]+/, lineBreaks: true }
+  '[': '[',
+  ']': ']',
+  '{': '{',
+  '}': '}',
+  ':': ':',
+  ',': ',',
+  ws: { match: /[\s]+/, lineBreaks: true }
   }
 })
 %}
 @lexer lexer
 pyon -> header value %end {% ([type, payload]) => ({ type, payload }) %}
-header -> %pyon %space %number %space %name %NL {% data => data[4].value %}
+header -> "PyON" " " %number " " %name %NL {% data => data[4].value %}
 value ->
   object {% id %}
   | array {% id %}
   | primitive {% id %}
-object -> %lbrace (pair (%comma pair {% data => data[1] %}):*):? %rbrace {%
-  ([lb, entries, rb]) => {
+object -> "{" _ (pair ("," _ pair {% data => data[2] %}):*):? _ "}" {%
+  data => {
+    const entries = data[2]
     if (!entries) { return {} }
     return Object.fromEntries([ entries[0], ...entries[1]])
   }
 %}
-pair -> %string %colon value {% ([key, _, value]) => [key, value] %}
-array -> %lbrack (value (%comma value {% data => data[1] %}):*):? %rbrack {%
-  ([lb, items, rb]) => {
+pair -> %string ":" _ value {% data => [data[0], data[3]] %}
+array -> "[" _ (value ("," _ value {% data => data[2] %}):*):? _ "]" {%
+  data => {
+    const items = data[2]
     if (!items) { return [] }
     return [ items[0], ...items[1]]
   }
@@ -55,3 +57,5 @@ primitive ->
   | (%true | %trueString) {% () => true %}
   | (%false | %falseString) {% () => false %}
   | (%none | %noneString) {% () => null %}
+_ -> %ws:?
+__ -> %ws
