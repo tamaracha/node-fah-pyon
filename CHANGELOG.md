@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- PyON message name in the header may contain letters and dashes
+
 ## [1.4.2] - 2020-04-18
 ### Changed
 - SafeLoad behavior is unified: Returns a message of type empty, if parser results are undefined. This can happen if an empty string was passed or if the parser got only a partial PyON string.

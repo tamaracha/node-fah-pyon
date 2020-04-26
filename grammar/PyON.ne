@@ -4,7 +4,7 @@ const lexer = moo.states({
   main: {
   space: ' ',
     number: /[1-9][0-9]*/,
-    name: { match: /[a-zA-Z]+/, type: moo.keywords({
+    name: { match: /[a-zA-Z\-]+/, type: moo.keywords({
       pyon: 'PyON'
     })},
   NL: { match: /\n/, lineBreaks: true, push: 'pyon' }
