@@ -10,18 +10,19 @@
   },
   "types": "./lib/load.d.ts",
   "scripts": {
+    "lint": "standard --fix '{lib,config}/**/*.?(m)js' | snazzy",
+    "instrument": "c8 --reporter html --check-coverage --lines 80 npm test",
+    "docs": "jsdoc -c ./config/jsdoc.config.json",
+    "pregrammar": "shx mkdir -p lib/grammar",
+    "grammar": "nearleyc -o lib/grammar/pyon.js grammar/pyon.ne",
+    "prebuild": "shx rm -r lib/grammar",
+    "build": "npm run grammar",
+    "pretest": "npm run build",
+    "test": "ava",
+    "prepack": "npm run build",
     "preversion": "npm run lint && npm test",
     "version": "mate -w CHANGELOG.md && git add CHANGELOG.md",
-    "postversion": "git push && git push --tags",
-    "lint": "standard --fix '{lib,config}/**/*.?(m)js' | snazzy",
-    "pretest": "npm run build",
-    "test": "ava --tap | tap-nyc",
-    "instrument": "nyc npm test",
-    "docs": "jsdoc -c ./config/jsdoc.config.json",
-    "grammar": "mkdir lib/grammar && nearleyc -o lib/grammar/pyon.js grammar/pyon.ne",
-    "prebuild": "del lib/grammar",
-    "build": "npm run grammar",
-    "prepack": "npm run build"
+    "postversion": "git push && git push --tags"
   },
   "keywords": [
     "PyON",
@@ -39,31 +40,18 @@
   },
   "devDependencies": {
     "ava": "^3.7.0",
-    "babel-eslint": "^10.1.0",
-    "del-cli": "^3.0.0",
+    "c8": "^7.3.5",
     "husky": "^4.2.5",
     "lint-staged": "^10.1.3",
-    "nyc": "^15.0.1",
     "prettier": "^2.0.4",
-    "snazzy": "^8.0.0",
-    "standard": "^14.3.3",
-    "tap-nyc": "^1.0.3"
+    "shx": "^0.3.3",
+    "snazzy": "^9.0.0",
+    "standard": "^16.0.3"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged -c ./config/lint-staged.config.js",
       "pre-push": "npm test"
     }
-  },
-  "nyc": {
-    "exclude": "src/grammar/PyONVisitor.js",
-    "reporter": [
-      "html"
-    ],
-    "check-coverage": true,
-    "lines": 80
-  },
-  "standard": {
-    "parser": "babel-eslint"
   }
 }
