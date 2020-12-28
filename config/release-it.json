@@ -1,14 +1,10 @@
 {
   "hooks": {
-    "before:init": ["npm run lint", "npm test", "npm run instrument"],
-    "after:bump": "npm pack"
+    "before:init": ["npm run lint", "npm test", "npm run instrument"]
   },
   "github": {
     "release": true,
     "assets": ["*.tgz"]
-  },
-  "npm": {
-    "publish": false
   },
   "plugins": {
     "@release-it/keep-a-changelog": {
