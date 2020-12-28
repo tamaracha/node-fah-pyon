@@ -4,10 +4,9 @@ As described on that wiki page, the format has some similarities with JSON, but 
 The parser is written using [nearley] and [moo].
 
 ## Installation
-This is not yet published on npm, but installable package archives are attached to github releases.
 
 ```bash
-npm i https://github.com/tamaracha/node-fah-pyon/releases/download/v1.4.2/fah-pyon-1.4.2.tgz
+npm i fah-pyon
 ```
 
 ## Usage
@@ -58,7 +57,6 @@ npm test
 npm run build
 ```
 
-[release]: https://github.com/tamaracha/node-fah-pyon/releases/download/v1.4.2/fah-pyon-1.4.2.tgz
 [nearley]: https://nearley.js.org
 [moo]: https://github.com/no-context/moo
 [third party client interface]: https://github.com/FoldingAtHome/fah-control/wiki/3rd-party-FAHClient-API
