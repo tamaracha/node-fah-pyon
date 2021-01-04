@@ -1,5 +1,6 @@
 'use strict'
 module.exports = {
   '*.{json,yml,yaml}': 'prettier --write',
-  '(lib|config)/**/*.?(m|c)js': files => `standard --fix ${files.join(' ')} | snazzy`
+  '*.md': 'markdownlint-cli2-fix',
+  '(config|lib)/**/*.?(c|m)js': 'standard --fix'
 }

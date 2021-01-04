@@ -1,6 +1,11 @@
 # FAH-PyON
-This is a small parser for PyON, a data serialization format. PyON is used by the Folding@Home project in their [third party client interface].
-As described on that wiki page, the format has some similarities with JSON, but they are not fully compatible. If someone wants to create a frontend for FAH, PyON parsing is a precondition for reading most of the interface messages.
+
+This is a small parser for PyON, a data serialization format.
+PyON is used by the Folding@Home project in their [third party client interface].
+As described on that wiki page, the format has some similarities with JSON,
+but they are not fully compatible.
+If someone wants to create a frontend for FAH,
+PyON parsing is a precondition for reading most of the interface messages.
 The parser is written using [nearley] and [moo].
 
 ## Installation
@@ -10,16 +15,21 @@ npm i fah-pyon
 ```
 
 ## Usage
+
 The module exports two functions: `load` and `safeLoad`.
 Both take a string and try to parse it as PyON.
 On success, they return an object of type Message with a type and a payload property.
-The type is the identifyer in the PyON header, whereas the payload is the parsed PyON content.
+The type is the identifyer in the PyON header,
+whereas the payload is the parsed PyON content.
 
 The two functions differ in their error handling.
-The load function is more strict about the assumptions it makes about the given string and can throw if parsing fails.
+The load function is more strict about the assumptions it makes about the given string
+and can throw if parsing fails.
 If it didn't fail, but received a partial PyON string, it returns undefined.
-The safeLoad function tries to parse and trims whitespace around the input string, but doesn't throw.
-On failure, it returns a Message object with type = 'none' and the given input argument as payload.
+The safeLoad function doesn't throw but tries to parse
+and trims whitespace around the input string.
+On failure, it returns a Message object with type = 'none'
+and the given input argument as payload.
 It doesn't return undefined, but a Message with type = 'empty' and payload = null.
 
 ```node

@@ -11,8 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### Outdated build deps
 
-- Updated to latest version of standard which understands ESM and removed babel-eslint
-- Replaced nyc and tap-nyc with c8 which uses Node.JS' built-in functionality for code coverage
+- Updated to latest version of standard which understands ESM
+  and removed babel-eslint
+- Replaced nyc and tap-nyc with c8
+  which uses Node.JS' built-in functionality for code coverage
 - Uses shx for more platform-independent  scripts (substitutes del-cli)
 
 ## [1.4.3] - 2020-04-26
@@ -25,7 +27,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- SafeLoad behavior is unified: Returns a message of type empty, if parser results are undefined. This can happen if an empty string was passed or if the parser got only a partial PyON string.
+- SafeLoad behavior is unified:
+  Returns a message of type empty, if parser results are undefined.
+  This can happen if an empty string was passed
+  or if the parser got only a partial PyON string.
 
 ## [1.4.1] - 2020-04-18
 
@@ -55,7 +60,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - exclude antlr-generated files from git repo
 - Convert unit tests to ava
-- Use [Javascript Standard Style](https://github.com/standard/standard) for code linting and formatting.
+- Use [Javascript Standard Style](https://github.com/standard/standard)
+  for code linting and formatting.
 
 [Unreleased]: https://github.com/tamaracha/node-fah-pyon/compare/v1.4.4...HEAD
 [1.4.4]: https://github.com/tamaracha/node-fah-pyon/compare/v1.4.3...v1.4.4
@@ -64,3 +70,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.4.1]: https://github.com/tamaracha/node-fah-pyon/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/tamaracha/node-fah-pyon/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/tamaracha/node-fah-pyon/compare/v1.2.0...v1.3.0
+<!-- markdownlint-configure-file { "MD024": { "siblings_only": true }} -->
