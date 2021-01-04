@@ -1,6 +1,7 @@
 {
   "hooks": {
-    "before:init": ["npm run lint", "npm test", "npm run instrument"]
+    "before:init": ["npm run lint", "npm test", "npm run instrument"],
+    "before:github:release": "npm pack"
   },
   "github": {
     "release": true,
