@@ -1,6 +1,6 @@
 {
   "name": "fah-pyon",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "Parse data in the PyON serialization format",
   "main": "./lib/load.js",
   "type": "commonjs",
