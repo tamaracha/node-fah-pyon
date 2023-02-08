@@ -1,3 +1,4 @@
+<!-- markdownlint-configure-file { "MD024": { "siblings_only": true }} -->
 # Changelog
 
 All notable changes to this project will be documented in this file.
@@ -92,4 +93,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.4.1]: https://github.com/tamaracha/node-fah-pyon/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/tamaracha/node-fah-pyon/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/tamaracha/node-fah-pyon/compare/v1.2.0...v1.3.0
-<!-- markdownlint-configure-file { "MD024": { "siblings_only": true }} -->
