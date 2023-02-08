@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.4.7] - 2023-02-08
 
 - Updated dev dependencies and resolved vulnerabilities
 
@@ -85,6 +85,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Use [Javascript Standard Style](https://github.com/standard/standard)
   for code linting and formatting.
 
+[1.4.7]: https://github.com/tamaracha/node-fah-pyon/compare/v1.4.6...v1.4.7
 [1.4.6]: https://github.com/tamaracha/node-fah-pyon/compare/v1.4.5...v1.4.6
 [1.4.5]: https://github.com/tamaracha/node-fah-pyon/compare/v1.4.4...v1.4.5
 [1.4.4]: https://github.com/tamaracha/node-fah-pyon/compare/v1.4.3...v1.4.4
